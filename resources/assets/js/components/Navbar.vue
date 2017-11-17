@@ -22,6 +22,16 @@
         <ul class="navbar-nav">
           <!-- Authenticated -->
           <template v-if="authenticated">
+            <router-link :to="{ name: 'client.list' }" tag="li" class="nav-item">
+              <a class="nav-link">
+                Clients
+              </a>
+            </router-link>
+            <router-link :to="{ name: 'client.create' }" tag="li" class="nav-item">
+              <a class="nav-link">
+                Create Client
+              </a>
+            </router-link>
             <router-link :to="{ name: 'settings.profile' }" tag="li" class="nav-item">
               <a class="nav-link">
                 {{ user.name }}

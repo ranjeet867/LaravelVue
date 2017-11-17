@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreClient;
 use Illuminate\Http\Request;
 use App\Client;
+use Response;
 
 class ClientController extends Controller
 {

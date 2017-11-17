@@ -9,7 +9,7 @@ export default ({ authGuard, guestGuard }) => [
       { path: 'profile', name: 'settings.profile', component: require('~/pages/settings/profile.vue') },
       { path: 'password', name: 'settings.password', component: require('~/pages/settings/password.vue') },
       { path: '/client/create', name: 'client.create', component: require('~/pages/client/create.vue') },
-        { path: '/client', name: 'client.list', component: require('~/pages/settings/client/list.vue') }
+        { path: '/client', name: 'client.list', component: require('~/pages/client/list.vue') }
     ] }
   ]),
 
