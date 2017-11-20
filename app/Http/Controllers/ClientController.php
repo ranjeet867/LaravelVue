@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreClient;
+use App\Http\Resources\ClientResource;
 use Illuminate\Http\Request;
 use App\Client;
 use Response;
@@ -26,7 +27,7 @@ class ClientController extends Controller
      */
     public function index(Request $request)
     {
-        return Client::paginate();
+        return new ClientResource(Client::paginate());
     }
 
     /**
@@ -50,7 +51,7 @@ class ClientController extends Controller
     {
         $request['address'] = str_replace("\r\n", '', $request->get('address'));
 
-        Client::create([
+        $client = Client::create([
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'address' => $request->address,
@@ -64,11 +65,15 @@ class ClientController extends Controller
             'zip' => $request->zip,
         ]);
 
-        Response::json([
-            'status' => 'success',
-        ],
-            201
-        );
+        if(!$client)
+            throw new Exception('Error in saving data.');
+
+        return response()->json([
+            'success'=>true,
+            'message'=>'Client created',
+            'data'=> new ClientResource(Client::find($client->id))
+        ], 201);
+
     }
 
 }
